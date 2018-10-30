@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
-autossh -M 0 -f -N autossh
+PIDDIR=${HOME}/.local/var/run/autossh
 
-echo $!
+[ -d ${PIDDIR} ] || {
+    mkdir -p ${PIDDIR}
+}
+
+AUTOSSH_PIDFILE=${PIDDIR}/autossh.pid
+
+export AUTOSSH_PIDFILE
+
+[ -f ${AUTOSSH_PIDFILE} ] || {
+    autossh -M 0 -f -N autossh
+}
