@@ -1,0 +1,12 @@
+Host 127.0.0.1 autossh
+    Hostname 127.0.0.1
+    User autossh
+    SendEnv LANG LC_*
+    IdentityFile ~/.ssh/autossh
+    ConnectTimeout 0
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+    RemoteForward 2222 localhost:22
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
