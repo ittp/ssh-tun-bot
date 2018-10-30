@@ -78,5 +78,21 @@ netstat -lnt
 ps aux |grep autossh
 ```
 
+### Copy autossh-bot to ~/bin
+```
+mkdir -p ~/bin
+cp ./bin/autossh-bot ~/bin
+```
 
 
+### Register cron job
+```
+crontab -e 
+```
+
+Schedule cron job to every 5 minutes
+
+
+```
+0/5 * * * * ~/bin/autossh-bot
+```
