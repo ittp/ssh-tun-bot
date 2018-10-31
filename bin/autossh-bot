@@ -8,8 +8,14 @@ PIDDIR=${HOME}/.local/var/run/autossh
 
 AUTOSSH_PIDFILE=${PIDDIR}/autossh.pid
 
-export AUTOSSH_PIDFILE
+if [ -f ${AUTOSSH_PIDFILE} ]; then
+    PID=$(cat ${AUTOSSH_PIDFILE})
+    if ! ps -p ${PID} > /dev/null; then
+        rm -f ${AUTOSSH_PIDFILE}
+    fi
+fi
 
 [ -f ${AUTOSSH_PIDFILE} ] || {
+    export AUTOSSH_PIDFILE
     autossh -M 0 -f -N autossh
 }
