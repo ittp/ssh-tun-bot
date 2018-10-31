@@ -1,4 +1,4 @@
-# Keep SSH tunneling session ssing autossh and cron
+# Keep SSH session using autossh and cron
 ## Server Side
 
 ### Add User for SSH tunneling
