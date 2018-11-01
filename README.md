@@ -37,20 +37,26 @@ sudo systemctl restart ssh
 
 ## Client Side
 
+### Copy SSH private key to client host
+
+```
+scp 1.2.3.4/.ssh/autossh ~/.ssh/autossh
+```
+
 ### Install autossh
 ```
 sudo apt install autossh
 ```
 
-### Add Configurations
+### Add SSH Client Configurations
 
 Append following config to ~/.ssh/config
 
-Replace ${TARGET_HOST} to real IP or hostname
+Replace 1.2.3.4 to real IP or hostname
 
 ```
-Host ${TARGET_HOST} autossh
-    Hostname ${TARGET_HOST}
+Host 1.2.3.4 autossh
+    Hostname 1.2.3.4
     User autossh
     SendEnv LANG LC_*
     IdentityFile ~/.ssh/autossh
