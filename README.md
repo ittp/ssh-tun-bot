@@ -60,6 +60,17 @@ Match User autossh
    ForceCommand echo 'This account can only be used for [reason]'
 ```
 
+if did you want *Local Port Forwarding* please set *GatewayPorts* to *yes*.
+
+```
+Match User autossh
+   ...
+   GatewayPorts no
+   ...
+```
+
+```
+
 ### Restart SSH daemon
 ```
 sudo systemctl restart ssh
@@ -135,6 +146,14 @@ autossh -M 0 -f -N autossh
 ```
 
 ### Verify SSH Connection
+Check listen port in your system.
+
+#### for Local Port Forward (in Server)
+```
+netstat -lnt
+```
+
+#### for Remote Port Forward (in Client)
 ```
 netstat -lnt
 ```
