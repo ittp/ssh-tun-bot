@@ -86,7 +86,7 @@ Replace 1.2.3.4 to real IP or hostname
 
 #### for Local Forwarding
 
-*only allowd if **GatewayPort=yes** (default: no) in server configuration.*
+*only allowed if **GatewayPort=yes** (default: no) in server configuration.*
 
 ```
 Host 1.2.3.4 autossh
