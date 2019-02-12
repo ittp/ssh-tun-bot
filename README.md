@@ -1,4 +1,35 @@
 # Keep SSH session using autossh and cron
+
+## Prerequisites
+
+### SSH Tunneling
+
+#### Local Port Forwarding
+
+```
+ssh -L [bind_addr:]port:target_addr:target_port user@server
+```
+* bind_addr
+* port
+* target_addr
+* target_port
+* user
+* server
+#### Remote Port Forwarding
+
+```
+ssh -R [bind_addr:]port:target_addr:target_port user@server
+```
+* bind_addr
+* port
+* target_addr
+* target_port
+* user
+* server
+
+
+Please see [http://dirk-loss.de/ssh-port-forwarding.pdf](http://dirk-loss.de/ssh-port-forwarding.pdf)
+
 ## Server Side
 
 ### Add User for SSH tunneling
@@ -25,8 +56,7 @@ Match User autossh
    #PermitTunnel no
    #GatewayPorts no
    AllowAgentForwarding no
-   PermitOpen localhost:52443
-   PermitOpen localhost:55420
+   PermitOpen localhost:2222
    ForceCommand echo 'This account can only be used for [reason]'
 ```
 
@@ -54,6 +84,28 @@ Append following config to ~/.ssh/config
 
 Replace 1.2.3.4 to real IP or hostname
 
+#### for Local Forwarding
+
+```
+Host 1.2.3.4 autossh
+    Hostname 1.2.3.4
+    User autossh
+    SendEnv LANG LC_*
+    IdentityFile ~/.ssh/autossh
+    ConnectTimeout 0
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+    LocalForward 2222 localhost:22
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+```
+```
+LocalForward 2222 localhost:22
+```
+
+#### for Remote Forwarding
+
 ```
 Host 1.2.3.4 autossh
     Hostname 1.2.3.4
@@ -68,6 +120,11 @@ Host 1.2.3.4 autossh
     ServerAliveInterval 30
     ServerAliveCountMax 3
 ```
+
+```
+RemoteForward** 2222 localhost:22
+```
+
 
 ### Test SSH connection
 
@@ -93,7 +150,7 @@ cp ./bin/autossh-bot ~/bin
 
 ### Register cron job
 ```
-crontab -e 
+crontab -e
 ```
 
 Schedule cron job to every 5 minutes

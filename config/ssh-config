@@ -1,5 +1,5 @@
-Host 127.0.0.1 autossh
-    Hostname 127.0.0.1
+Host 1.2.3.4 autossh
+    Hostname 1.2.3.4
     User autossh
     SendEnv LANG LC_*
     IdentityFile ~/.ssh/autossh
