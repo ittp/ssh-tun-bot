@@ -86,6 +86,8 @@ Replace 1.2.3.4 to real IP or hostname
 
 #### for Local Forwarding
 
+*only allowd if **GatewayPort=yes** (default: no) in server configuration.*
+
 ```
 Host 1.2.3.4 autossh
     Hostname 1.2.3.4
@@ -144,7 +146,7 @@ ps aux |grep autossh
 ### Copy autossh-bot to ~/bin
 ```
 mkdir -p ~/bin
-cp ./bin/autossh-bot ~/bin
+cp ./bin/auto-ssh-bot ~/bin
 ```
 
 
@@ -157,5 +159,5 @@ Schedule cron job to every 5 minutes
 
 
 ```
-0/5 * * * * ~/bin/autossh-bot
+0/5 * * * * ~/bin/auto-ssh-bot
 ```
