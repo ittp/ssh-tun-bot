@@ -69,8 +69,6 @@ Match User autossh
    ...
 ```
 
-```
-
 ### Restart SSH daemon
 ```
 sudo systemctl restart ssh
